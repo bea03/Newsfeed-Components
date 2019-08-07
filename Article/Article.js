@@ -1,5 +1,6 @@
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
+window.addEventListener('load', (event) => {
 const data = [
   {
     title: 'Lambda School Students: "We\'re the best!"',
@@ -85,8 +86,25 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Software Software',
+    date: 'Feb 1st, 2019',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
+
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
@@ -112,14 +130,53 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
-
-const articleBox = document.querySelector('.articles');
-
 function articleCreator(data) {
-  //article div
-  const articleDiv = document.createElement('div');
-  articleDiv.classList.add('article');
+   
+   const articleDiv = document.createElement('div');
+   articleDiv.classList.add('article');
+   
+   const articleTitle = document.createElement('h2');
+   articleDiv.appendChild(articleTitle);
+   articleTitle.textContent = data.title;
 
-  //h2
-  const articleTitle = document.createElement('div');
-}
+   const articleDate = document.createElement('p');
+   articleDiv.appendChild(articleDate);
+   articleDate.textContent = data.date;
+   articleDate.classList.add('date');
+
+   const paraOne = document.createElement('p');
+   articleDiv.appendChild(paraOne);
+   paraOne.textContent = data.firstParagraph;
+   
+   const paraTwo = document.createElement('p');
+   articleDiv.appendChild(paraTwo);
+   paraTwo.textContent = data.secondParagraph;
+
+   const paraThree = document.createElement('p');
+   articleDiv.appendChild(paraThree);
+   paraThree.textContent = data.thirdParagraph;
+
+   const button = document.createElement('span');
+   button.classList.add('expandButton');
+   button.textContent = "Expand/Close";   
+   articleDiv.appendChild(button);
+ 
+    button.addEventListener('click', (event) => {
+    articleDiv.classList.toggle('article-open');
+   });
+   return articleDiv;
+};
+
+let articleBox = document.querySelector('.articles');
+
+data.forEach(data => {
+  articleBox.appendChild(articleCreator(data));
+});
+
+let pageArticles = document.querySelector('.articles');
+
+data.forEach(data => {
+  pageArticles.appendChild(articleMachine(data));
+  // console.log('test');
+});
+});

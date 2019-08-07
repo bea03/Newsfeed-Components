@@ -1,5 +1,5 @@
 /* This is the data we will be using, study it but don't change anything, yet. */
-
+window.addEventListener('load', (event) => {
 let menuItems = [
   'Students',
   'Faculty',
@@ -31,5 +31,35 @@ let menuItems = [
   Step 5: return the menu component.
 
   Step 6: add the menu component to the DOM.
-  
-*/
+  */
+
+let menuButton = document.querySelector('.menu-button');
+let header = document.querySelector('.header');
+header.appendChild(webpageMenu(menuItems));
+
+function webpageMenu(data) {
+  //declaring elements
+  const menuDiv = document.createElement('div');
+  const listItem = document.createElement('ul');
+
+  //appending to menu
+  menuDiv.appendChild(listItem);
+
+  //set class
+  menuDiv.classList.add('menu');
+
+  //iterating over list
+  data.forEach(item => {
+    const list = document.createElement('li');
+    listItem.appendChild(list);
+    list.textContent = menuItems;
+  });
+
+  //event listener
+  menuButton.addEventListener('click', () => {
+    menuDiv.classList.toggle('menu--open');
+  });
+
+  return menuDiv;
+}
+});

@@ -48,11 +48,13 @@ function webpageMenu(data) {
   //set class
   menuDiv.classList.add('menu');
 
+  
+
   //iterating over list
   data.forEach(item => {
     const list = document.createElement('li');
     listItem.appendChild(list);
-    list.textContent = menuItems;
+    list.textContent = item;
   });
 
   //event listener
